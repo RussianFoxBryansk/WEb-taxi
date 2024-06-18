@@ -6,7 +6,8 @@
   <title>такси и каршеринг</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="../template/css/style.css">
+  <script src="/WEb-taxi/template/js/script.js" defer></script>
 </head>
 <body>
   <nav class=" navbar navbar-expand-lg navbar-light bg-light">
@@ -79,66 +80,87 @@
       <div class="col-md-6">
         <form>
             <div class="card form">
-                <div class="card-body ">
-                    <div class="form-group row">
+              <div class="card-body">
+                <div class="container from-to-stop">
+                    <div class="form-group">
                         <label for="from">Откуда:</label>
-                        <input type="text" class="form-control" id="from" placeholder="Enter starting location">
+                        <input type="text" class="form-control" id="from" placeholder="Укажите местоположение">
+                    </div>
+                    <div class="stops-container">
+                        
+                        <!-- Здесь будут отображаться поля для мест остановок -->
                     </div>
                     <div class="form-group">
                         <label for="to">Куда:</label>
-                        <input type="text" class="form-control" id="to" placeholder="Enter destination">
+                        <input type="text" class="form-control" id="to" placeholder="Укажите куда поедем">
                     </div>
                     <div class="form-group">
-                        <label for="stop">+ Добавить остановку</label>
-                        <input type="text" class="form-control" id="stop" placeholder="Enter stopover location">
+                        <button type="button" class="btn btn-primary" id="addStop">+ Добавить остановку</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="card-body form">
-                    <h5 class="card-title">Select a Car</h5>
-                
-                    <div class="card-deck">
-                        <div class="card">
-                            <img src="/media/Rectangle 24.svg" class="card-img-top" alt="Car 3">
-                            <div class="card-body">
-                                <h5 class="card-text">Price: $110</h5>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/media/Rectangle 19.svg" class="card-img-top" alt="Car 3">
-                            <div class="card-body">
-                                <h5 class="card-text">Price: $110</h5>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/media/Rectangle 15.svg" class="card-img-top" alt="Car 3">
-                            <div class="card-body">
-                                <h5 class="card-text">Price: $110</h5>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/media/Rectangle 13.svg" class="card-img-top" alt="Car 3">
-                            <div class="card-body">
-                                <h5 class="card-text">Price: $110</h5>
-                            </div>
-                        </div>
+            <div class="card-body form">
+              <div class="card-deck">
+                  <div class="card car" onclick="selectCar(this)">
+                      <img src="/WEb-taxi/template/media/Rectangle 24.svg" class="card-img-top" alt="Car 1">
+                      <div class="card-body">
+                          <p class="card-text">$110</p>
+                      </div>
+                  </div>
+                  <div class="card car" onclick="selectCar(this)">
+                      <img src="/WEb-taxi/template/media/Rectangle 19.svg" class="card-img-top" alt="Car 2">
+                      <div class="card-body">
+                          <p class="card-text">$110</p>
+                      </div>
+                  </div>
+                  <div class="card car" onclick="selectCar(this)">
+                    <img src="/WEb-taxi/template/media/Rectangle 15.svg" class="card-img-top" alt="Car 1">
+                    <div class="card-body">
+                        <p class="card-text">$110</p>
                     </div>
                 </div>
-                <div class="card-body ">
-                    <h5 class="card-title">Travel Information</h5>
+                <div class="card car" onclick="selectCar(this)">
+                    <img src="/WEb-taxi/template/media/Rectangle 13.svg" class="card-img-top" alt="Car 2">
+                    <div class="card-body">
+                        <p class="card-text">$110</p>
+                    </div>
+                </div>
+                  <!-- Оставшиеся карточки машин -->
+                </div>
+            </div>
+                <div class="card-body">
+                  <div class="container pay-form">
                     <div class="form-group row">
-                        <label for="from">From:</label>
-                        <input type="text" class="form-control" id="from" placeholder="Enter starting location">
+                        <label for="paymentMethod" class="col-sm-6 col-form-label">Способ оплаты:</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="paymentMethod">
+                                <option value="cash">Наличные</option>
+                                <option value="card">Карта</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="to">To:</label>
-                        <input type="text" class="form-control" id="to" placeholder="Enter destination">
+                    <div class="form-group row">
+                        <label for="promoCode" class="col-sm-6 col-form-label">Промокод:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="promoCode" placeholder="Введите промокод">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="stop">Stop:</label>
-                        <input type="text" class="form-control" id="stop" placeholder="Enter stopover location">
+                    <div class="form-group row">
+                      <label for="nextMan" class="col-sm-6 col-form-label">Заказ другому человеку:</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="promoCode" placeholder="Введите промокод">
+                      </div>
                     </div>
+                    <div class="form-group row">
+                      <label for="promoCode" class="col-sm-6 col-form-label">Комментарий водителю:</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="promoCode" placeholder="Введите промокод">
+                      </div>
+                  </div>
                 </div>
+              </div>
+    
             </div>
         
             
