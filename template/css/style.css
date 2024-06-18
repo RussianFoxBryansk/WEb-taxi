@@ -19,6 +19,56 @@ body{
     background-color: rgba(0,0,0,.125);
     border-radius: 1.25rem;
 }
+.card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; 
+    background: #FFFFFF99;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlay a {
+    display: block;
+    height: 100%;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding:  5px 20px;
+    font-family: Playfair Display;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 18.66px;
+    text-align: left;
+}
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; 
+    background: #FFFFFF99;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: height 1s ease; /* добавлено свойство transition */
+}
+
+.overlay:hover {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 .btn-primary{
     background-color: inherit;
     color: inherit;
@@ -64,3 +114,15 @@ body{
 .selected {
     border: 2px solid rgb(0, 0, 0); 
 }
+
+  
+  .footer {
+    width: 100%;
+    background-color: #ffffff;
+    color: inherit;
+    padding: 0 40px;
+    text-align: center;
+  }
+  .list-unstyled a{
+    color: inherit;
+  }
