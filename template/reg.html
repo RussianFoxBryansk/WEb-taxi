@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>История поездок</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="../template/css/style.css">
+  
+  <script src="/WEb-taxi/template/js/script.js" defer></script>
+</head>
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">        
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+          <a href="#">
+            <img src="/WEb-taxi/template/media/Rectangle 30.svg" class="d-inline-block align-top" alt="Логотип">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/WEb-taxi/template/index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Галерея</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Связаться с нами</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/WEb-taxi/template/reg.html">Зарегистрироваться</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WEb-taxi/template/reg.html">Войти</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-4 mb-5">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <form class="form-reg" id="registrationForm">
+            <h2 class="row justify-content-center">Регистрация</h2>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="inputName" placeholder="Введите ваш Никнейм" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="inputFName" placeholder="Введите ФИО" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="inputLogin" placeholder="Введите login/номер телефона" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control form-control-reg" id="inputEmail" placeholder="Введите ваш email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-reg" id="inputPassword" placeholder="Введите пароль" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-reg" id="inputConfirmPassword" placeholder="Повторите пароль" required>
+            </div>
+            <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="profileCheck" style="display: none;">
+                <label class="form-check-label" for="profileCheck">У меня есть профиль</label>
+            </div>
+            <button type="submit" class="btn btn-primary" id="finishRegistration">Завершить регистрацию</button>
+          </form>
+
+          <form class="form-reg" style="display: none;" id="authorizationForm">
+            <h2 class="row justify-content-center">Авторизация</h2>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="loginInput" placeholder="Логин или email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-reg" id="passwordInput" placeholder="Пароль" required>
+            </div>
+            <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="noProfileCheck" style="display: none;">
+                <label class="form-check-label" for="noProfileCheck">У меня нет профиля</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#profileCheck').change(function() {
+    if($(this).is(":checked")) {
+      $('#registrationForm').hide();
+      $('#authorizationForm').show();
+      $('#noProfileCheck').prop('checked', false);
+    } else {
+      $('#authorizationForm').hide();
+      $('#registrationForm').show();
+    }
+  });
+
+  $('#noProfileCheck').change(function() {
+    if($(this).is(":checked")) {
+      $('#authorizationForm').hide();
+      $('#registrationForm').show();
+      $('#profileCheck').prop('checked', false);
+    } else {
+      $('#registrationForm').hide();
+      $('#authorizationForm').show();
+    }
+  });
+});
+</script>
+
+
+
+
+
+  <footer class="footer sticky-footer">
+    <div class="container ">
+      <div class="row">
+        <div class="col-3">
+          <h5>Пользователям</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Скачать приложение</a></li>
+            <li><a href="#">Написать в поддержку</a></li>
+            <li><a href="#">Узнать о безопасности</a></li>
+            <li><a href="#">Полезные советы</a></li>
+            <li><a href="#">Новости сервиса</a></li>
+          </ul>
+        </div>
+        <div class="col-3">
+          <h5>Водителям</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Стать водителем в парк</a></li>
+            <li><a href="#">Стать самозанятым</a></li>
+            <li><a href="#">Стать ИП-водителем</a></li>
+            <li><a href="#">Стать курьером</a></li>
+            <li><a href="#">Арендовать авто</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-3">
+          <h5>Подпишитесь на нас</h5>
+          <ul class="list-unstyled">
+              <li><a href="#">Вконтакте<img src="/WEb-taxi/template/media/Rectangle 31.svg" alt="Вконтакте"></a></li>
+              <li><a href="#">Telegram<img src="/WEb-taxi/template/media/Rectangle 32.svg" alt="Telegram"></a></li>
+          </ul>
+      </div>
+        <div class="col-3">
+          <h5>Подпишитесь на рассылку</h5>
+          <form>
+              <div class="form-group">
+                  <input type="email" class="form-control" id="emailInput" placeholder="Введите ваш email">
+              </div>
+              <button type="submit" class="btn btn-primary">Подписаться</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap JavaScript and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
