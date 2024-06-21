@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>История поездок</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <script src="/js/script.js" defer></script>
+</head>
+<body>
+{{{navbar}}}
+
+
+<div class="container mt-4 mb-5">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <form class="form-reg" id="registrationForm">
+            <h2 class="row justify-content-center">Регистрация</h2>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="inputName" placeholder="Введите ваш Никнейм" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="inputFName" placeholder="Введите ФИО" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="inputLogin" placeholder="Введите login/номер телефона" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control form-control-reg" id="inputEmail" placeholder="Введите ваш email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-reg" id="inputPassword" placeholder="Введите пароль" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-reg" id="inputConfirmPassword" placeholder="Повторите пароль" required>
+            </div>
+            <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="profileCheck" style="display: none;">
+                <label class="form-check-label" for="profileCheck">У меня есть профиль</label>
+            </div>
+            <button type="submit" class="btn btn-primary" id="finishRegistration">Завершить регистрацию</button>
+          </form>
+
+          <form class="form-reg" style="display: none;" id="authorizationForm">
+            <h2 class="row justify-content-center">Авторизация</h2>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-reg" id="loginInput" placeholder="Логин или email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-reg" id="passwordInput" placeholder="Пароль" required>
+            </div>
+            <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="noProfileCheck" style="display: none;">
+                <label class="form-check-label" for="noProfileCheck">У меня нет профиля</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#profileCheck').change(function() {
+    if($(this).is(":checked")) {
+      $('#registrationForm').hide();
+      $('#authorizationForm').show();
+      $('#noProfileCheck').prop('checked', false);
+    } else {
+      $('#authorizationForm').hide();
+      $('#registrationForm').show();
+    }
+  });
+
+  $('#noProfileCheck').change(function() {
+    if($(this).is(":checked")) {
+      $('#authorizationForm').hide();
+      $('#registrationForm').show();
+      $('#profileCheck').prop('checked', false);
+    } else {
+      $('#registrationForm').hide();
+      $('#authorizationForm').show();
+    }
+  });
+});
+</script>
+
+
+
+
+
+{{{footer}}}
+  <!-- Bootstrap JavaScript and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

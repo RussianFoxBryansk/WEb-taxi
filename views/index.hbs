@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>такси и каршеринг</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <script src="/js/script.js" defer></script>
+</head>
+<body >
+  {{{navbar}}}
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="/media/Rectangle 8.jpg" style="width: 100%;" alt="">
+          <div class="overlay">
+            <a href="#">Летний промокод на первую поездку</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="/media/Rectangle 9.jpg" style="width: 100%;" alt="">
+          <div class="overlay">
+            <a href="#">Присоединяйся к команде уже сегодня</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="/media/Rectangle 10.jpg" style="width: 100%;" alt="">
+          <div class="overlay">
+            <a href="#">Решим все трудности с переездом</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="/media/Rectangle 11.jpg" style="width: 100%;" alt="">
+          <div class="overlay">
+            <a href="#">Такси для вашего бизнеса</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <form>
+            <div class="card form">
+              <div class="card-body">
+                <div class="container from-to-stop">
+                    <div class="form-group">
+                        <label for="from">Откуда:</label>
+                        <input type="text" class="form-control" id="from" placeholder="Укажите местоположение">
+                    </div>
+                    <div class="stops-container">
+                        
+                        <!-- Здесь будут отображаться поля для мест остановок -->
+                    </div>
+                    <div class="form-group">
+                        <label for="to">Куда:</label>
+                        <input type="text" class="form-control" id="to" placeholder="Укажите куда поедем">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" id="addStop">+ Добавить остановку</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body form">
+              <div class="card-deck">
+                  <div class="card car" onclick="selectCar(this)">
+                      <img src="/media/Rectangle 24.svg" class="card-img-top" alt="Car 1">
+                      <div class="card-body">
+                          <p class="card-text">от 307 ₽</p>
+                      </div>
+                  </div>
+                  <div class="card car" onclick="selectCar(this)">
+                      <img src="/media/Rectangle 19.svg" class="card-img-top" alt="Car 2">
+                      <div class="card-body">
+                          <p class="card-text">от 354 ₽</p>
+                      </div>
+                  </div>
+                  <div class="card car" onclick="selectCar(this)">
+                    <img src="/media/Rectangle 15.svg" class="card-img-top" alt="Car 1">
+                    <div class="card-body">
+                        <p class="card-text">от 367 ₽</p>
+                    </div>
+                </div>
+                <div class="card car" onclick="selectCar(this)">
+                    <img src="/media/Rectangle 13.svg" class="card-img-top" alt="Car 2">
+                    <div class="card-body">
+                        <p class="card-text">от 327 ₽</p>
+                    </div>
+                </div>
+                  <!-- Оставшиеся карточки машин -->
+                </div>
+            </div>
+                <div class="card-body">
+                  <div class="container pay-form">
+                    <div class="form-group row">
+                        <label for="paymentMethod" class="col-sm-6 col-form-label">Способ оплаты:</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="paymentMethod">
+                                <option value="cash">Наличные</option>
+                                <option value="card">Карта</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="promoCode" class="col-sm-6 col-form-label">Промокод:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="promoCode" placeholder="Введите промокод">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nextMan" class="col-sm-6 col-form-label">Заказ другому человеку:</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="promoCode" placeholder="Введите промокод">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="promoCode" class="col-sm-6 col-form-label">Комментарий водителю:</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="promoCode" placeholder="Введите комментарий">
+                      </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="map-container">
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa58a52543316c669ab592425a91786e00991ad02a267dffb13b2ab6cc5d095b9&amp;source=constructor" width="500" height="400" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{{{footer}}}
+
+  <!-- Bootstrap JavaScript and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

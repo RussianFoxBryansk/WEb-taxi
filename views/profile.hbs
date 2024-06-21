@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>История поездок</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">  
+  <script src="js/script.js" defer></script>
+  <script src="js/profile.js" defer></script>
+</head>
+<body>
+ {{{navbar}}}
+
+
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="card text-center">
+              <img id="userPhoto" src="media/user.jpg" class="card-img-top rounded-circle p-3" alt="User Photo">
+                <div class="card-body">
+                  <h5 class="card-title">Имя пользователя 
+                      <a href="#" id="changeNameIcon">&#128393;</a>
+                  </h5>
+                  <p class="card-text">Рейтинг пользователя</p>
+                  <p class="card-text">
+                      <span id="ratingStars">
+                          <!-- Отображение звездочек с рейтингом здесь -->
+                      </span>
+                  </p>
+                  <p id="changePhotoText">Нажмите, чтобы сменить фото профиля</p>
+                <input type="file" id="uploadPhoto" style="display: none;">         
+              </div>
+          </div>
+      </div>
+        <div class="col-md-7">
+<form class="card p-4">
+    <div class="form-group d-flex align-items-center">
+        <label for="fullName" class="flex-grow-1 mb-0 col-3">ФИО</label>
+        <i class="edit-icon ms-2">✏️</i>
+        <input type="text" id="fullName" class="form-control flex-grow-1 ms-2" disabled>
+        <i class="check-icon ms-2" style="display: none">✅</i>
+    </div>
+    <div class="form-group d-flex align-items-center">
+        <label for="phoneNumber" class="flex-grow-1 mb-0 col-3">Номер телефона</label>
+        <i class="edit-icon ms-2">✏️</i>
+        <input type="text" id="phoneNumber" class="form-control flex-grow-1 ms-2" disabled>
+        <i class="check-icon ms-2" style="display: none">✅</i>
+    </div>
+    <div class="form-group d-flex align-items-center">
+        <label for="email" class="flex-grow-1 mb-0 col-3">Email</label>
+        <i class="edit-icon ms-2">✏️</i>
+        <input type="text" id="email" class="form-control flex-grow-1 ms-2" disabled>
+        <i class="check-icon ms-2" style="display: none">✅</i>
+    </div>
+<div class="form-group d-flex align-items-center">
+    <label for="paymentMethod" class="flex-grow-1 mb-0 col-3">Способ оплаты по умолчанию</label>
+    <i class="edit-icon ms-2">✏️</i>
+    <select id="paymentMethod" class="form-control flex-grow-1 ms-2">
+        <option value="cash">Наличные</option>
+        <option value="card">Кредитная карта</option>
+    </select>
+    <input type="text" id="cardNumber" class="form-control flex-grow-1 ms-2" style="display: none;" placeholder="Введите номер карты" disabled>
+    <i class="check-icon ms-2" style="display: none">✅</i>
+</div>
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Обновить профиль</button>
+        </div>
+    </div>
+</form>
+
+
+        </div>
+            <div class="row mt-4">
+              <div class="col-md-12">
+                  <h2>История поездок</h2>
+                  <table class="table">
+                      <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Время</th>
+                            <th scope="col">Откуда</th>
+                            <th scope="col">Куда</th>
+                            <th scope="col">Стоимость</th>
+                            <th scope="col">Способ оплаты</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td>01.01.2023</td>
+                            <td>15:00</td>
+                            <td>Улица А</td>
+                            <td>Площадь Б</td>
+                            <td>$20</td>
+                            <td>Кредитная карта</td>
+                        </tr>
+                        <tr>
+                            <td>05.03.2023</td>
+                            <td>08:30</td>
+                            <td>Домой</td>
+                            <td>Работа</td>
+                            <td>$15</td>
+                            <td>Наличные</td>
+                        </tr>
+                        <!-- Добавьте другие поездки в соответствии с вашими данными -->
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+{{{footer}}}
+
+  <!-- Bootstrap JavaScript and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
