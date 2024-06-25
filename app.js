@@ -41,7 +41,9 @@ app.get('/reg', function(req, res) {
 app.get('/profile', function(req, res) {
     res.render('profile', { navbar: globalNavbar, footer: globalFooter });
 });
-
+app.get('/auto', function(req, res) {
+    res.render('auto', { navbar: globalNavbar, footer: globalFooter });
+});
 
 app.listen(port, function () {
 console.log( `Сервер запущен:

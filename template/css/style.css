@@ -128,3 +128,46 @@ body{
     background-color: #ffffff;
     border-radius: 1rem;
 }
+.scrollable-list {
+    max-height: 200px; 
+    overflow-y: auto; 
+    border-radius: 1rem; 
+    padding: 10px; 
+}
+
+/* Стилизация полосы прокрутки */
+
+.scrollable-list {
+    scrollbar-width: thin; /* Тонкая полоса прокрутки */
+    scrollbar-color: transparent transparent; /* Цвет полосы прокрутки и фона (по умолчанию) */
+  }
+  
+  .scrollable-list::-webkit-scrollbar {
+    width: 12px; /* Ширина полосы прокрутки вебкит-браузерах */
+  }
+  
+  .scrollable-list::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Цвет полосы прокрутки */
+    border-radius: 6px; /* Скругление границ полосы прокрутки */
+  }
+  .car-card {
+    margin-bottom: 20px;
+}
+.car-image {
+    height: 150px; /* высота изображения авто */
+    width: inherit;
+    object-fit: cover;
+}
+.overflow-auto-car {
+    max-height: 600px; /* Выберите подходящую высоту для вашего дизайна */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.thumbnail img {
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+.btn{
+    border-radius: 1rem;
+}  
