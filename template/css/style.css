@@ -170,4 +170,10 @@ body{
   }
 .btn{
     border-radius: 1rem;
+}
+.img-about{
+    opacity: 0.5;
 }  
+.card-about{
+    border-radius: 3rem;
+}
