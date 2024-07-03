@@ -14,7 +14,7 @@ app.set('view engine', 'hbs');
 
 let globalNavbar, globalFooter;
 
-fs.readFile('views/navbar.hbs', 'utf8', (err, navbar) => {
+fs.readFile('views/navbar/navbar.hbs', 'utf8', (err, navbar) => {
     if (err) {
         console.error('Ошибка при чтении файла navbar:', err);
     }

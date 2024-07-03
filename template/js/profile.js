@@ -1,7 +1,7 @@
 
   // JavaScript для смены имени
   document.getElementById('changeNameIcon').addEventListener('click', function() {
-    var newName = prompt('Введите новое имя пользователя:');
+    let newName = prompt('Введите новое имя пользователя:');
     if (newName) {
         document.querySelector('.card-title').textContent = newName;
     }
@@ -9,20 +9,20 @@
   
   // JavaScript для отображения рейтинга с использованием звездочек
   function generateStars(rating) {
-    var starHTML = '';
-    for (var i = 1; i <= 5; i++) {
+    let starHTML = '';
+    for (let i = 1; i <= 5; i++) {
         if (i <= rating) {
-            starHTML += '&#9733;'; // Звезда
+            starHTML += '<img src="media/star/star-sharp-svgrepo-com (1).svg"  /img>'; // Звезда
         } else if (i - 0.5 <= rating) {
-            starHTML += '&#11242;'; // Половинка звезды
+            starHTML += '<img  src="media/star/star-sharp-half-svgrepo-com (1).svg" /img>'; // Половинка звезды
         } else {
-            starHTML += '&#9734;'; // Пустая звезда
+            starHTML += '<img src="media/star/star-sharp-svgrepo-com (2).svg"  /img>'; // Пустая звезда
         }
     }
     return starHTML;
   }
   
-  var userRating = 3; // Пример рейтинга (можно заменить на свой)
+  let userRating = 0; // Пример рейтинга (можно заменить на свой)
   document.getElementById('ratingStars').innerHTML = generateStars(userRating);
 
   // JavaScript для смены фото профиля
@@ -31,9 +31,9 @@ document.getElementById('changePhotoText').addEventListener('click', function() 
 });
 
 document.getElementById('uploadPhoto').addEventListener('change', function() {
-    var file = this.files[0];
+    let file = this.files[0];
     if (file) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function(e) {
             document.getElementById('userPhoto').src = e.target.result;
         }
@@ -43,21 +43,36 @@ document.getElementById('uploadPhoto').addEventListener('change', function() {
 
 document.querySelectorAll('.edit-icon').forEach(icon => {
     icon.addEventListener('click', function() {
-        const paymentMethod = this.nextElementSibling;
-        const cardNumberInput = this.nextElementSibling.nextElementSibling;
-        const checkIcon = this.nextElementSibling.nextElementSibling.nextElementSibling;
-        cardNumberInput.style.display = (paymentMethod.value === 'card') ? 'block' : 'none';
-        if (paymentMethod.value === 'card') {
-            cardNumberInput.removeAttribute('disabled');
-            checkIcon.style.display = 'inline';
-        }
+        let inputField = this.nextElementSibling;
+        let checkIcon = this.nextElementSibling.nextElementSibling;
+        
+        inputField.removeAttribute('disabled');
+        inputField.focus();
+        checkIcon.style.display = 'inline';
+        this.style.display = 'none';
     });
 });
 
 document.querySelectorAll('.check-icon').forEach(icon => {
     icon.addEventListener('click', function() {
-        const inputField = this.previousElementSibling;
+        let inputField = this.previousElementSibling;
+        let editIcon = inputField.previousElementSibling;
+
+        inputField.setAttribute('disabled', true);
+        editIcon.style.display = 'inline';
         this.style.display = 'none';
-        inputField.setAttribute('disabled', 'true');
     });
+});
+
+document.getElementById('paymentMethod').addEventListener('change', function() {
+    let cardNumberInput = document.getElementById('cardNumber');
+    let checkIcon = cardNumberInput.nextElementSibling;
+
+    if (this.value === 'card') {
+        cardNumberInput.style.display = 'inline';
+        checkIcon.style.display = 'inline';
+    } else {
+        cardNumberInput.style.display = 'none';
+        checkIcon.style.display = 'none';
+    }
 });
