@@ -48,29 +48,23 @@ function selectCar(card) {
 
 
 
-
-$(document).ready(function() {
-    $('#profileCheck').change(function() {
-      if($(this).is(":checked")) {
-        $('#registrationForm').hide();
-        $('#authorizationForm').show();
-        $('#noProfileCheck').prop('checked', false);
-      } else {
-        $('#authorizationForm').hide();
-        $('#registrationForm').show();
-      }
-    });
-  
-    $('#noProfileCheck').change(function() {
-      if($(this).is(":checked")) {
-        $('#authorizationForm').hide();
-        $('#registrationForm').show();
-        $('#profileCheck').prop('checked', false);
-      } else {
-        $('#registrationForm').hide();
-        $('#authorizationForm').show();
-      }
-    });
-  });
   
 
+    // Предположим, у вас есть массив промокодов promoCodes
+    let promoCodes = ['CODE1', 'CODE2', 'CODE3'];
+
+    // Найдем элементы для отображения в модальном окне
+    let promoCodesSection = document.getElementById('promoCodesSection');
+    let noPromoCodesMessage = document.getElementById('noPromoCodesMessage');
+    
+    // Проверяем, есть ли промокоды
+    if (promoCodes.length > 0) {
+        // Если промокоды найдены, отображаем блок promoCodesSection и заполняем его
+        promoCodesSection.style.display = 'block';
+        promoCodesSection.innerHTML = '<p>Ваши промокоды: ' + promoCodes.join(', ') + '</p>';
+        noPromoCodesMessage.style.display = 'none';
+    } else {
+        // Если промокодов нет, скрываем блок promoCodesSection и отображаем сообщение об их отсутствии
+        promoCodesSection.style.display = 'none';
+        noPromoCodesMessage.style.display = 'block';
+    }

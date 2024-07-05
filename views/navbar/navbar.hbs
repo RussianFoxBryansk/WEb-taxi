@@ -21,7 +21,7 @@
                     <a class="nav-link" href="#">Связаться с нами</a>
                 </li>
             </ul>
-            <ul class="navbar-nav "  style="display: none;">
+            <ul class="navbar-nav "  >
                 <li class="nav-item">
                     <a class="nav-link" href="/reg">Зарегистрироваться</a>
                 </li>
@@ -29,15 +29,15 @@
                     <a class="nav-link" href="#">Войти</a>
                 </li>
             </ul>
-            <ul class="navbar-nav user">
+            <ul class="navbar-nav user" style="display: none;">
                 <li class="nav-item user-item">
                     Имя Пользователя
                     <div class="userDetails">
                         <ul>
-                            <li><a href="/edit-profile"><img src="media/navbar-icon/Rectangle 35.svg" class="align-middle"> Изменить профиль</a></li>
-                            <li><a href="/promo-codes"><img src="media/navbar-icon/Ellipse 10.svg" class="align-middle"> Мои промокоды</a></li>
-                            <li><a href="/trip-history"><img src="media/navbar-icon/Rectangle 34.svg" class="align-middle"> История поездок</a></li>
-                            <li><a href="/support-chat"><img src="media/navbar-icon/Rectangle 36.svg" class="align-middle"> Чат с поддержкой</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#editProfileModal"><img src="media/navbar-icon/Rectangle 35.svg" class="align-middle"> Изменить профиль</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#promoCodesModal"><img src="media/navbar-icon/Ellipse 10.svg" class="align-middle"> Мои промокоды</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#tripHistoryModal"><img src="media/navbar-icon/Rectangle 34.svg" class="align-middle"> История поездок</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#supportChatModal"><img src="media/navbar-icon/Rectangle 36.svg" class="align-middle"> Чат с поддержкой</a></li>
                             <li><a href="/logout"><img src="media/navbar-icon/Rectangle 37.svg" class="align-middle"> Выйти</a></li>
                         </ul>
                     </div>
@@ -50,6 +50,118 @@
                     </a>
                 </li>
             </ul>
+
+                        <!-- Модальные окна -->
+                        <!-- Модальное окно для изменения профиля -->
+            <div class="modal" id="editProfileModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class=" d-flex justify-content-between">
+                            <h5 class="modal-title">Изменить профиль</h5>
+                            <button type="button" class="close rounded-circle border " data-dismiss="modal" style="width: 30px; height: 30px;">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Форма для изменения профиля -->
+                            <form>
+                                <div class="form-group ">
+                                    <input type="text" class="form-control" id="username" value="значение_никнейма">
+                                </div>
+                                <div class="form-group ">
+                                    <input type="email" class="form-control" id="email" value="значение_почты">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Сохранить изменения</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно для промокодов -->
+            <div class="modal" id="promoCodesModal">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-5">
+            <div class="modal-header d-flex justify-content-between">
+                <h5 class="modal-title">Мои промокоды</h5>
+                <button type="button" class="close rounded-circle border " data-dismiss="modal" style="width: 30px; height: 30px;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Условное отображение в зависимости от наличия промокодов -->
+                <div id="promoCodesSection">
+                    <!-- Этот блок будет заполняться в зависимости от условия -->
+                </div>
+                <div id="noPromoCodesMessage" style="display: none;">
+                    <p>У вас пока нет промокодов.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <!-- Модальное окно для истории поездок -->
+            <div class="modal" id="tripHistoryModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">История поездок</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Таблица с историей поездок пользователя -->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Дата</th>
+                                        <th>Место отправления</th>
+                                        <th>Место назначения</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Дата 1</td>
+                                        <td>Место 1</td>
+                                        <td>Место 2</td>
+                                    </tr>
+                                    <!-- Дополнительные записи об истории поездок -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно для чата с поддержкой -->
+            <div class="modal" id="supportChatModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Чат с поддержкой</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Форма для чата с поддержкой -->
+                            <form>
+                                <div class="form-group">
+                                    <label for="message">Сообщение:</label>
+                                    <textarea class="form-control" id="message" rows="3"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-primary">Отправить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
