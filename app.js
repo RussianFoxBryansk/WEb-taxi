@@ -1,8 +1,8 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const fs = require('fs');
-const hbs = require('hbs');
+const path = require('path');
+const exphbs  = require('express-handlebars');
 
 const connection = require('./connection');
 
@@ -17,7 +17,17 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.set('views', 'views');
+app.set('views', path.join(__dirname, 'views'));
+app.set('partials', path.join(__dirname, 'views/partials'));
+
+
+app.engine('hbs', exphbs.engine({
+  extname: 'hbs',
+  defaultLayout: 'main',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: path.join(__dirname, 'views/partials')
+}));
+
 app.set('view engine', 'hbs');
 
 let users = [];
@@ -42,34 +52,39 @@ getUsers((error, results) => {
     console.log(users); // Обработайте извлеченные данные здесь
   });
   
-let globalNavbar, globalFooter;
-
-fs.readFile('views/navbar/navbar.hbs', 'utf8', (err, navbar) => {
-    if (err) {
-        console.error('Ошибка при чтении файла navbar:', err);
-    }
-    globalNavbar = navbar;
-});
-
-fs.readFile('views/footer.hbs', 'utf8', (err, footer) => {
-    if (err) {
-        console.error('Ошибка при чтении файла footer:', err);
-    }
-    globalFooter = footer;
-});
-
-
-
 
 //главная страница
 app.get('/', function(req, res) {
-    res.render('index', { navbar: globalNavbar, footer: globalFooter });
+    res.render('index', {
+        navbar: 'navbar',
+        footer: 'footer',
+        authenticated: req.session.authenticated || false
+    });
 });
+
 
 
 // Обработка регистрации и входа в систему
 app.post('/reg', (req, res) => {
     const { action, username, password } = req.body;
+
+    if (!action || !username || !password) {
+        if (!action) {
+            console.log('Отсутствует действие в запросе');
+        }
+        if (!username) {
+            console.log('Отсутствует имя пользователя в запросе');
+        }
+        if (!password) {
+            console.log('Отсутствует пароль в запросе');
+        }
+        return res.status(400).send('Пропущены обязательные поля в запросе');
+    }
+    
+    if (action !== 'register' && action !== 'login') {
+        console.log('Недопустимое действие');
+        return res.status(400).send('Недопустимое действие');
+    }
     console.log(`Получен запрос на регистрацию/вход для пользователя: ${username}, действие: ${action}`);
 
     if (action === 'register') {
@@ -103,7 +118,11 @@ app.post('/reg', (req, res) => {
 // Защищенная страница профиля
 app.get('/profile', (req, res) => {
     if (req.session.authenticated) {
-        res.render('profile', { username: req.session.username, navbar: globalNavbar, footer: globalFooter });
+        res.render('profile', { username: req.session.username,
+                                navbar: 'navbar',
+                                footer: 'footer',
+                                authenticated: req.session.authenticated || false
+        });
     } else {
         res.redirect('/reg');
     }
@@ -111,13 +130,26 @@ app.get('/profile', (req, res) => {
 
 // Страница с формой регистрации и входа в систему
 app.get('/reg', (req, res) => {
-    res.render('reg', { navbar: globalNavbar, footer: globalFooter });
+    res.render('reg', { navbar: 'navbar',
+                        footer: 'footer',
+                        authenticated: req.session.authenticated || false });
 });
 
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect('/'); // После выхода перенаправляем пользователя на главную страницу или куда-то ещё
+      }
+    });
+  });
 
 //страница с арендой авто
 app.get('/auto', function(req, res) {
-    res.render('auto', { navbar: globalNavbar, footer: globalFooter });
+    res.render('auto', { navbar: 'navbar',
+                        footer: 'footer',
+                        authenticated: req.session.authenticated || false });
 });
 
 app.listen(port, function () {
