@@ -31,9 +31,18 @@ app.engine('hbs', exphbs.engine({
 app.set('view engine', 'hbs');
 
 let users = [];
-
+const user = {
+  UserID: '',
+  FIO: '',
+  PhoneNumber: '',
+  Email: '',
+  Nickname: '',
+  Password: '',
+  username: '',
+  password: ''
+};
 function getUsers(callback) {
-  connection.query('SELECT Full_Name as username, Phone_Number as password FROM Driver', (error, results) => {
+  connection.query('SELECT *,Nickname as username,Password as password  FROM User', (error, results) => {
     if (error) {
       callback(error, null);
       return;
@@ -51,14 +60,45 @@ getUsers((error, results) => {
     users = results; // Предполагая успешный запрос в базу данных, обновляем массив пользователей
     console.log(users); // Обработайте извлеченные данные здесь
   });
+
+
+  let cars = [];
+  const car = {
+
+    CarID:"",
+    Mark:"",
+    Model:"",
+    GosNumber:"",
+    Class:"",
+    Info:""    
+  };
+  function getCars(callback) {
+    connection.query('SELECT Cars.*, CarsInfo.* FROM Cars JOIN CarsInfo ON Cars.Info = CarsInfo.InfoID', (error, results) => {
+      if (error) {
+        callback(error, null);
+        return;
+      }
+      callback(null, results);
+    });
+  }
   
+  // Call getUsers and use retrieved data
+  getCars((error, results) => {
+      if (error) {
+        console.error('Ошибка получения пользователей:', error);
+        return;
+      }
+      cars = results; // Предполагая успешный запрос в базу данных, обновляем массив пользователей
+      console.log(cars); // Обработайте извлеченные данные здесь
+    });
 
 //главная страница
 app.get('/', function(req, res) {
-    res.render('index', {
-        navbar: 'navbar',
-        footer: 'footer',
-        authenticated: req.session.authenticated || false
+    res.render('index', { username: req.session.username,
+                          navbar: 'navbar',
+                          footer: 'footer',
+                          authenticated: req.session.authenticated || false ,
+                          user
     });
 });
 
@@ -100,17 +140,25 @@ app.post('/reg', (req, res) => {
     } else if (action === 'login') {
         // Вход в систему
         
-        const user = users.find(user => user.username === username && user.password === password);
+        const loggedInUser = users.find(user => user.username === username && user.password === password);
         console.log(`Попытка входа для пользователя ${username}`);
-        if (user) {
+        if (loggedInUser) {
             
             req.session.authenticated = true;
             req.session.username = username;
             console.log(`Пользователь ${username} успешно вошел в систему`);
+            user.UserID = loggedInUser.UserID; // Пример: если UserID - это идентификатор пользователя.
+            user.FIO = loggedInUser.FIO;
+            user.PhoneNumber = loggedInUser.PhoneNumber;
+            user.Email = loggedInUser.Email;
+            user.Nickname = loggedInUser.Nickname;
             res.redirect('/profile');
         } else {
             console.log(`Неправильное имя пользователя или пароль для пользователя ${username}`);
-            res.render('reg', { message: 'Неправильное имя пользователя или пароль', navbar: globalNavbar, footer: globalFooter });
+            res.render('reg', { message: 'Неправильное имя пользователя или пароль', username: req.session.username,
+                                                                                      navbar: 'navbar',
+                                                                                      footer: 'footer',
+                                                                                      authenticated: req.session.authenticated || false });
         }
     }
 });
@@ -121,7 +169,8 @@ app.get('/profile', (req, res) => {
         res.render('profile', { username: req.session.username,
                                 navbar: 'navbar',
                                 footer: 'footer',
-                                authenticated: req.session.authenticated || false
+                                authenticated: req.session.authenticated || false,
+                                user
         });
     } else {
         res.redirect('/reg');
@@ -130,7 +179,8 @@ app.get('/profile', (req, res) => {
 
 // Страница с формой регистрации и входа в систему
 app.get('/reg', (req, res) => {
-    res.render('reg', { navbar: 'navbar',
+    res.render('reg', { username: req.session.username,
+                        navbar: 'navbar',
                         footer: 'footer',
                         authenticated: req.session.authenticated || false });
 });
@@ -147,9 +197,13 @@ app.get('/logout', (req, res) => {
 
 //страница с арендой авто
 app.get('/auto', function(req, res) {
-    res.render('auto', { navbar: 'navbar',
-                        footer: 'footer',
-                        authenticated: req.session.authenticated || false });
+  res.render('auto', { username: req.session.username,
+                      navbar: 'navbar',
+                      footer: 'footer',
+                      authenticated: req.session.authenticated || false,
+                      user,
+                      cars,
+                    car});
 });
 
 app.listen(port, function () {

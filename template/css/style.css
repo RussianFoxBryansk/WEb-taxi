@@ -246,3 +246,31 @@ body{
 .card-about{
     border-radius: 3rem;
 }
+.supportImg{
+    max-width: 30px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.message-container{
+    max-height: 300px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.message-container::-webkit-scrollbar {
+    display: none;
+}
+.message-container {
+    scrollbar-width: none; /* для Firefox */
+}
+.promocode-container{
+    max-height: 400px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.promocode-container::-webkit-scrollbar {
+    display: none;
+}
+.promocode-container {
+    scrollbar-width: none; /* для Firefox */
+}

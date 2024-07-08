@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
     host: 'localhost',  // Хост базы данных
     user: 'root',   // Имя пользователя
     password: '',  // Пароль
-    database: 'Carsharing'   // Имя базы данных
+    database: 'carsharing'   // Имя базы данных
 });
 
 // Установка соединения

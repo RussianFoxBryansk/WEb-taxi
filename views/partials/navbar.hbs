@@ -24,7 +24,7 @@
                 {{#if authenticated}}
                     <ul class="navbar-nav user" >
                         <li class="nav-item user-item">
-                            Имя Пользователя
+                            {{user.FIO}}
                             <div class="userDetails">
                                 <ul>
                                     <li><a href="#" data-toggle="modal" data-target="#editProfileModal"><img src="media/navbar-icon/Rectangle 35.svg" class="align-middle"> Изменить профиль</a></li>
@@ -46,10 +46,10 @@
                 {{else}}
                     <ul class="navbar-nav no-user"  >
                         <li class="nav-item">
-                            <a class="nav-link" href="/reg">Зарегистрироваться</a>
+                            <a href="/reg" class="nav-link" id="showRegistrationForm">Зарегистрироваться</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Войти</a>
+                            <a href="/reg" class="nav-link" id="showLoginForm">Войти</a>
                         </li>
                     </ul>
                 {{/if}}          
@@ -60,9 +60,9 @@
             <div class="modal" id="editProfileModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class=" d-flex justify-content-between">
+                        <div class="modal-header">
                             <h5 class="modal-title">Изменить профиль</h5>
-                            <button type="button" class="close rounded-circle border " data-dismiss="modal" style="width: 30px; height: 30px;">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <!-- Форма для изменения профиля -->
@@ -85,19 +85,84 @@
             <!-- Модальное окно для промокодов -->
             <div class="modal" id="promoCodesModal">
     <div class="modal-dialog">
-        <div class="modal-content rounded-5">
-            <div class="modal-header d-flex justify-content-between">
-                <h5 class="modal-title">Мои промокоды</h5>
-                <button type="button" class="close rounded-circle border " data-dismiss="modal" style="width: 30px; height: 30px;">&times;</button>
-            </div>
+        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Мои промокоды</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
             <div class="modal-body">
-                <!-- Условное отображение в зависимости от наличия промокодов -->
-                <div id="promoCodesSection">
-                    <!-- Этот блок будет заполняться в зависимости от условия -->
-                </div>
-                <div id="noPromoCodesMessage" style="display: none;">
-                    <p>У вас пока нет промокодов.</p>
-                </div>
+                    <ul class="promocode-container">                        
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                        
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                        
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                        
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                         
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                        
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                        
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                        
+                            <li class="d-flex ">
+                                <img src="/media/iconModel/Rectangle 92.svg" alt="">
+                                <div class="ml-2">
+                                    <p class="mb-2">Промокод SUMMER15 для получения
+                                    15% скидки на первую поездку</p>
+                                    <button class="p-2 bg-secondary text-white rounded-pill ">применить</button>
+                                </div>                                
+                            </li>                        
+                    </ul>
+                    <div class="promocode-container d-flex justify-content-center align-items-center flex-column"  >
+                        <img src="/media/iconModel/Rectangle 91.svg" alt="" class="col-6 mb-4">
+                        <h1 class="mb-1">Промокодов пока нет</h1>
+                        <p>Они появятся здесь, как только вы их получите</p>
+                    </div>
+                         
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
@@ -144,28 +209,57 @@
 
             <!-- Модальное окно для чата с поддержкой -->
             <div class="modal" id="supportChatModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Чат с поддержкой</h5>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Форма для чата с поддержкой -->
-                            <form>
-                                <div class="form-group">
-                                    <label for="message">Сообщение:</label>
-                                    <textarea class="form-control" id="message" rows="3"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                            <button type="button" class="btn btn-primary">Отправить</button>
-                        </div>
-                    </div>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Чат с поддержкой</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+            <div class="modal-body ">
+                <div class="message-container container col-12 mb-2">
+                    <ul class="list-unstyled mb-3 d-flex flex-column col-12">
+                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1">
+                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                            <p class="p-1">1 сообщение поддержки</p>                            
+                        </li>
+                        <li class="d-flex justify-content-end align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                            <p class="p-1">сообщение пользователя</p>
+                            <img class="supportImg" src="/media/user.jpg"  alt="">
+                            </li>
+                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                            <p class="p-1">2 сообщение поддержки</p>                            
+                        </li>
+                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1">
+                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                            <p class="p-1">1 сообщение поддержки</p>                            
+                        </li>
+                        <li class="d-flex justify-content-end align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                            <p class="p-1">сообщение пользователя</p>
+                            <img class="supportImg" src="/media/user.jpg"  alt="">
+                            </li>
+                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                            <p class="p-1">2 сообщение поддержки</p>                            
+                        </li>
+                    </ul>
+                </div>
+                <form>
+                    <div class="input-group position-relative">
+                        <input type="text" class="rounded-pill p-2 col-12" placeholder="Ваше сообщение" aria-label="Ваше сообщение" aria-describedby="basic-addon2">
+                        
+                            <button class="btn btn-primary rounded-pill position-absolute " style="right: 0;top: 0;" type="button">
+                                <img src="/media/iconModel/email-download-svgrepo-com.svg" class="supportImg" alt="">
+                            </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
 </nav>

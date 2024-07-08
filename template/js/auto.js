@@ -1,60 +1,113 @@
-    // Function to change the main photo and details
-    function changeMainPhoto(button) {
-        var card = button.closest('.car-card');
-        var mainPhoto = document.getElementById('mainPhoto');
-        var selectedPhoto = card.querySelector('.card-img-top').src;
-        mainPhoto.src = selectedPhoto;
-
-        // Here you can update the other details based on the selected car
-        // You can use a data attribute of the card to store the details and retrieve them here
-
-        // For example, you can set data attributes on each card to store its details
-        var carModel = card.dataset.model; // Replace with the actual data attribute name
-        var year = card.dataset.year; // Replace with the actual data attribute name
-        var mileage = card.dataset.mileage; // Replace with the actual data attribute name
-        var enginePower = card.dataset.enginePower; // Replace with the actual data attribute name
-        var transmission = card.dataset.transmission; // Replace with the actual data attribute name
-        var drive = card.dataset.drive; // Replace with the actual data attribute name
-        var price = card.dataset.price; // Replace with the actual data attribute name
-
-        // Update the details section with the selected car's details
-        var carDetails = document.querySelector('.car-details');
-        carDetails.innerHTML = `
-            <h2>${carModel}</h2>
-            <table class="table">
-                <tr>
-                    <td>Год выпуска:</td>
-                    <td>${year}</td>
-                </tr>
-                <tr>
-                    <td>Пробег:</td>
-                    <td>${mileage}</td>
-                </tr>
-                <tr>
-                    <td>Мощность двигателя:</td>
-                    <td>${enginePower}</td>
-                </tr>
-                <tr>
-                    <td>Коробка:</td>
-                    <td>${transmission}</td>
-                </tr>
-                <tr>
-                    <td>Привод:</td>
-                    <td>${drive}</td>
-                </tr>
-                <tr>
-                    <td>₽/сутки:</td>
-                    <td>${price}</td>
-                </tr>
-            </table>
-            <div class="text-center">
-                <button class="btn btn-primary btn-block mb-2">Арендовать</button>
-                <br>
-                <button class="btn btn-success btn-block">Зарезервировать</button>
+// Функция для отображения характеристик автомобиля в модальном окне
+function showCarDetails(carModel, year, mileage, enginePower, transmission, drive, price, photo) {
+    var modalContent = document.getElementById('carDetailsModalContent');
+    modalContent.innerHTML = `
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="${photo}" alt="${carModel}" class="modal-car-image" style="width: 100%;">
+                </div>
+                <div class="col-md-6">
+                    <h2>${carModel}</h2>
+                    <table class="table">
+                        <tr>
+                            <td>Год выпуска:</td>
+                            <td>${year}</td>
+                        </tr>
+                        <tr>
+                            <td>Пробег:</td>
+                            <td>${mileage}</td>
+                        </tr>
+                        <tr>
+                            <td>Мощность двигателя:</td>
+                            <td>${enginePower}</td>
+                        </tr>
+                        <tr>
+                            <td>Коробка передач:</td>
+                            <td>${transmission}</td>
+                        </tr>
+                        <tr>
+                            <td>Привод:</td>
+                            <td>${drive}</td>
+                        </tr>
+                        <tr>
+                            <td>₽/сутки:</td>
+                            <td>${price}</td>
+                        </tr>
+                    </table>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-block">Арендовать</button>
+                        <br>
+                        <button class="btn btn-secondary btn-block">Зарезервировать</button>
+                    </div>
+                </div>
             </div>
-        `;
-    }
+        </div>
+    `;
 
-function changeMainPhoto(photo) {
-    document.getElementById('mainPhoto').src = photo.src;
-  }
+    $('#carDetailsModal').modal('show');
+}
+
+// Обработчик клика на изображение автомобиля
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('card-img-top')) {
+        var card = e.target.closest('.card');
+        var carModel = card.querySelector('.card-title').innerText;
+      
+        // Замените card.dataset.year и другие card.dataset.xxx на соответствующие переменные из вашей базы данных или другого места, где хранятся данные об автомобиле
+      
+        var year = ""; // Замените на значение из вашей базы данных
+        var mileage = ""; // Замените на значение из вашей базы данных
+        var enginePower = ""; // Замените на значение из вашей базы данных
+        var transmission = ""; // Замените на значение из вашей базы данных
+        var drive = ""; // Замените на значение из вашей базы данных
+        var price = ""; // Замените на значение из вашей базы данных
+        var photo = e.target.src;
+
+        showCarDetails(carModel, year, mileage, enginePower, transmission, drive, price, photo);
+    }
+});
+
+function filterCarsByCategory(category) {
+    var carCards = document.querySelectorAll('.full-car-card');
+    carCards.forEach(function(card) {
+    if (card.classList.contains(category)) {
+    card.style.display = 'block';  // Отобразить автомобили выбранной категории
+    } else {
+    card.style.display = 'none';   // Скрыть автомобили других категорий
+    }
+    });
+    }
+    
+    // Обработчики клика для кнопок категорий
+    document.getElementById('businessBtn').addEventListener('click', function() {
+    filterCarsByCategory('business-car');
+    });
+    
+    document.getElementById('comfortBtn').addEventListener('click', function() {
+    filterCarsByCategory('comfort-car');
+    });
+    
+    document.getElementById('luxuryBtn').addEventListener('click', function() {
+    filterCarsByCategory('luxury-car');
+    });
+    document.getElementById('allCarsBtn').addEventListener('click', function() {
+        filterAllCars();
+    });
+    
+    function filterAllCars() {
+        var allCards = document.querySelectorAll('.full-car-card');
+        allCards.forEach(function(card) {
+            card.style.display = '';  // Отобразить все автомобили
+        });
+    }
+    function filterCards(category) {
+    let allCards = document.querySelectorAll('.car-card .col-lg-4');
+    allCards.forEach(card => {
+    card.style.display = 'none';
+    });
+    let selectedCards = document.querySelectorAll('.' + category);
+selectedCards.forEach(card => {
+    card.style.display = 'block';
+});
+}
