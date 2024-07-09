@@ -1,0 +1,151 @@
+
+<main class="container car-list mt-3">
+    <div class="overflow-auto-car  scrollable-list form border rounded-top-4 rounded-bottom-4 p-4 ">
+        <div class="row p-4">
+        {{#each cars}}
+        <div class="col-lg-4 business-car full-car-card">
+            <div class="card car-card col-12 p-0">
+                <img src="{{url}}" alt="{{name}}" class="card-img-top car-image" style="width: 100%;">
+                <div class="card-body car-details d-flex justify-content-between">
+                    <h5 class="card-title" style="flex: 1;">{{this.Mark}} {{this.Model}}</h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carModal{{this.id}}" style="flex: 1;">Стоимость: {{this.PriceDay}}/день</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for each car -->
+        <div class="modal fade" id="carModal{{this.id}}" tabindex="-1" aria-labelledby="carModalLabel{{this.id}}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="carModalLabel{{this.id}}">Редактировать автомобиль</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editCarForm{{this.id}}">
+                                <div class="mb-3">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carMark" name="carMark" required placeholder="Введите марку авто">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carModel" name="carModel" required placeholder="Введите модель авто">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carGosNumber" name="carGosNumber" required placeholder="Введите гос. номер">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carClass" name="carClass" required placeholder="Введите класс авто">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="file" class="border rounded-pill p-2 col-12" id="carPhoto" name="carPhoto" accept="image/*" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="border rounded-pill p-2 col-12" id="carYear" name="carYear" required placeholder="Введите год выпуска">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="border rounded-pill p-2 col-12" id="carMileage" name="carMileage" required placeholder="Введите текущий пробег">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carEnginePower" name="carEnginePower" required placeholder="Введите мощность двигателя">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carTransmission" name="carTransmission" required placeholder="Введите тип коробки передач">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="border rounded-pill  p-2 col-12" id="carDrivetrain" name="carDrivetrain" required placeholder="Введите тип привода">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="border rounded-pill p-2 col-12" id="carPriceDay" name="carPriceDay" required placeholder="Введите цену за сутки">
+                                </div>
+                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                <button  type="button" class="btn btn-primary" onclick="saveCarChanges({{this.id}})">Сохранить</button>
+                    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+            <p>No cars available at the moment.</p>
+        {{/each}}
+            <div class="col-lg-4 ">
+                <div class="card car-card col-12  p-0">
+                    <div class="card-top car-details d-flex justify-content-center" >
+                        <button class="col-12 bg-secondary text-white" id="addCarButton" data-bs-toggle="modal" data-bs-target="#addCarModal">
+                            <img src="/media/Group 89.svg" class="col-9 p-2" >
+                            <br>
+                            <p>Добавить автомобиль</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="addCarModal" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addCarModalLabel">Добавить автомобиль</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Car details form -->
+                            <form id="addCarForm">
+                                <div class="mb-1">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carMark" name="carMark" required placeholder="Введите марку авто">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carModel" name="carModel" required placeholder="Введите модель авто">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carGosNumber" name="carGosNumber" required placeholder="Введите гос. номер">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carClass" name="carClass" required placeholder="Введите класс авто">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="file" class="border rounded-pill p-2 col-12" id="carPhoto" name="carPhoto" accept="image/*" required>
+                                </div>
+                                <div class="mb-1">
+                                    <input type="number" class="border rounded-pill p-2 col-12" id="carYear" name="carYear" required placeholder="Введите год выпуска">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="number" class="border rounded-pill p-2 col-12" id="carMileage" name="carMileage" required placeholder="Введите текущий пробег">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carEnginePower" name="carEnginePower" required placeholder="Введите мощность двигателя">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="text" class="border rounded-pill p-2 col-12" id="carTransmission" name="carTransmission" required placeholder="Введите тип коробки передач">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="text" class="border rounded-pill  p-2 col-12" id="carDrivetrain" name="carDrivetrain" required placeholder="Введите тип привода">
+                                </div>
+                                <div class="mb-1">
+                                    <input type="number" class="border rounded-pill p-2 col-12" id="carPriceDay" name="carPriceDay" required placeholder="Введите цену за сутки">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-primary" id="saveCarButton">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const addCarModal = new bootstrap.Modal(document.getElementById('addCarModal'), {
+    keyboard: false
+  });
+
+  const addCarButton = document.getElementById('addCarButton');
+  if (addCarButton) {
+    addCarButton.addEventListener('click', function() {
+      addCarModal.show();
+    });
+  }
+});
+</script>

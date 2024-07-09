@@ -1,5 +1,5 @@
 
-
+<main>
     <div class="container car-list mt-3">
         <div class="row justify-content-center mb-4" role="group" aria-label="Car Categories">
             <button type="button" class="btn btn-secondary m-1" id="allCarsBtn">Все авто</button>
@@ -8,68 +8,14 @@
             <button type="button" class="btn btn-secondary m-1" id="luxuryBtn">Люкс</button>
         </div>
 
-
     
         <div class="overflow-auto-car  scrollable-list form border rounded-top-4 rounded-bottom-4 p-4">
             <div class="row p-4">
-                {{!-- <div class="container mb-4">
-    <div class="row justify-content-between">
-        <div class="col-2">
-            <div class="thumbnail row justify-content-center align-items-center flex-column p-2">
-                <img src="/media/Rectangle 19.svg" alt="Car 1" onclick="changeMainPhoto(this)">
-                <img src="/media/Rectangle 13.svg" alt="Car 2" onclick="changeMainPhoto(this)">
-                <img src="/media/Rectangle 15.svg" alt="Car 3" onclick="changeMainPhoto(this)">
-                <img src="/media/Rectangle 24.svg" alt="Car 4" onclick="changeMainPhoto(this)">
-            </div>
-        </div>
-        <div class="col-6 row justify-content-center align-items-center p-2">
-            <img id="mainPhoto" src="/media/Rectangle 19.svg" alt="Car 1" style="width: 100%;">
-        </div>
-        <div class="col-4 card p-4 pb-0">
-            <div class="row justify-content-center align-items-center flex-column">
-                <h2>Модель авто</h2>
-                <p>Характеристики</p>
-                <table class="table">
-                    <tr>
-                        <td>Год выпуска:</td>
-                        <td>2020 г.</td>
-                    </tr>
-                    <tr>
-                        <td>Пробег:</td>
-                        <td>13000 км.</td>
-                    </tr>
-                    <tr>
-                        <td>Мощность двигателя:</td>
-                        <td>113 л.с.</td>
-                    </tr>
-                    <tr>
-                        <td>Коробка:</td>
-                        <td>МКПП</td>
-                    </tr>
-                    <tr>
-                        <td>Привод:</td>
-                        <td>Передний</td>
-                    </tr>
-                    <tr>
-                        <td>₽/сутки:</td>
-                        <td>1400 ₽</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-12">
-                <div class="text-center">
-                    <button class="btn btn-primary btn-block form mb-2">Арендовать</button>
-                    <br>
-                    <button class="btn btn-secondary btn-block">Зарезервировать</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
+
 {{#each cars}}
   <div class="col-lg-4 business-car full-car-card">
-                    <div class="card car-card col-12 p-0">
-                        <img src="data:image/jpeg;base64,{{this.Photo}}" class="card-img-top car-image" alt="Car 1" style="width: 100%;">
+                    <div class="card car-card col-12 p-0">                        
+                        <img src="{{url}}" alt="{{name}}" class="card-img-top car-image" style="width: 100%;">
                         <div class="card-body car-details d-flex justify-content-between">
                             <h5 class="card-title" style="flex: 1;">{{this.Mark}} {{this.Model}}</h5>
                             <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: {{this.PriceDay}}/день</button>
@@ -173,47 +119,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body" id="carDetailsModalContent">
-         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="${photo}" alt="${carModel}" class="modal-car-image" style="width: 100%;">
-                </div>
-                <div class="col-md-6">
-                    <h2>${carModel}</h2>
-                    <table class="table">
-                        <tr>
-                            <td>Год выпуска:</td>
-                            <td>${year}</td>
-                        </tr>
-                        <tr>
-                            <td>Пробег:</td>
-                            <td>${mileage}</td>
-                        </tr>
-                        <tr>
-                            <td>Мощность двигателя:</td>
-                            <td>${enginePower}</td>
-                        </tr>
-                        <tr>
-                            <td>Коробка передач:</td>
-                            <td>${transmission}</td>
-                        </tr>
-                        <tr>
-                            <td>Привод:</td>
-                            <td>${drive}</td>
-                        </tr>
-                        <tr>
-                            <td>₽/сутки:</td>
-                            <td>${price}</td>
-                        </tr>
-                    </table>
-                    <div class="text-center">
-                        <button class="btn btn-primary btn-block">Арендовать</button>
-                        <br>
-                        <button class="btn btn-secondary btn-block">Зарезервировать</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Сюда будет выводиться информация об автомобиле -->
       </div>
     </div>
   </div>
@@ -294,3 +200,4 @@
     </div>
   </div>
 </section>
+</main>

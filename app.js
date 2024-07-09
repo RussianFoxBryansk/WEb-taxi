@@ -195,17 +195,45 @@ app.get('/logout', (req, res) => {
     });
   });
 
-//страница с арендой авто
+// страница с арендой авто
 app.get('/auto', function(req, res) {
-  res.render('auto', { username: req.session.username,
-                      navbar: 'navbar',
-                      footer: 'footer',
-                      authenticated: req.session.authenticated || false,
-                      user,
-                      cars,
-                    car});
-});
 
+    // Рендеринг шаблона 'auto' с данными output и другими переменными контекста
+    res.render('auto', { 
+      username: req.session.username,
+      navbar: 'navbar',
+      footer: 'footer',
+      authenticated: req.session.authenticated || false,
+      user,
+      cars,
+      car,
+    });
+  });
+ 
+
+  app.get('/admin-auto', function(req, res) {
+    res.render('admin-auto', { 
+      username: req.session.username,
+      navbar: 'navbar',
+      footer: 'footer',
+      authenticated: req.session.authenticated || false,
+      user,
+      cars,
+      car,
+    });
+  });
+
+  app.get('/support-chat', function(req, res) {
+    res.render('admin-chatSupport', { 
+      username: req.session.username,
+      navbar: 'navbar',
+      footer: 'footer',
+      authenticated: req.session.authenticated || false,
+      user,
+    });
+  });
+
+// 
 app.listen(port, function () {
 console.log( `Сервер запущен:
 http://localhost:${port}`
