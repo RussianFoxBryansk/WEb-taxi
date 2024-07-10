@@ -79,28 +79,48 @@ function filterCarsByCategory(category) {
     });
     }
     
-    // Обработчики клика для кнопок категорий
-    document.getElementById('businessBtn').addEventListener('click', function() {
-    filterCarsByCategory('business-car');
-    });
-    
-    document.getElementById('comfortBtn').addEventListener('click', function() {
-    filterCarsByCategory('comfort-car');
-    });
-    
-    document.getElementById('luxuryBtn').addEventListener('click', function() {
-    filterCarsByCategory('luxury-car');
-    });
-    document.getElementById('allCarsBtn').addEventListener('click', function() {
+    function filterCarsByCategory(category) {
+        let carCards = document.querySelectorAll('.full-car-card');
+        carCards.forEach(function(card) {
+          if (card.classList.contains(category + '-car')) {
+            card.style.display = 'block';  // Отобразить автомобили выбранной категории
+          } else {
+            card.style.display = 'none';   // Скрыть автомобили других категорий
+          }
+        });
+      }
+      
+      // Обработчики клика для кнопок категорий
+      document.getElementById('allCarsBtn').addEventListener('click', function() {
         filterAllCars();
-    });
-    
-    function filterAllCars() {
+      });
+      
+      document.getElementById('economyBtn').addEventListener('click', function() {
+        filterCarsByCategory('economy');
+      });
+      
+      document.getElementById('sedanBtn').addEventListener('click', function() {
+        filterCarsByCategory('sedan');
+      });
+      
+      document.getElementById('SUVBtn').addEventListener('click', function() {
+        filterCarsByCategory('SUV');
+      });
+      
+      document.getElementById('luxuryBtn').addEventListener('click', function() {
+        filterCarsByCategory('luxury');
+      });
+      
+      document.getElementById('hatchbackBtn').addEventListener('click', function() {
+        filterCarsByCategory('hatchback');
+      });
+      
+      function filterAllCars() {
         var allCards = document.querySelectorAll('.full-car-card');
         allCards.forEach(function(card) {
-            card.style.display = '';  // Отобразить все автомобили
+          card.style.display = '';  // Отобразить все автомобили
         });
-    }
+      }
     function filterCards(category) {
     let allCards = document.querySelectorAll('.car-card .col-lg-4');
     allCards.forEach(card => {

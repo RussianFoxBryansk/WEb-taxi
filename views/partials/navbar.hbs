@@ -18,7 +18,7 @@
                     <a class="nav-link" href="/auto">Аренда авто</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Связаться с нами</a>
+                    <a class="nav-link border-0 " data-toggle="modal" data-target="#supportChatModal">Связаться с нами</a>
                 </li>
             </ul>
                 {{#if authenticated}}
@@ -209,56 +209,56 @@
 
             <!-- Модальное окно для чата с поддержкой -->
             <div class="modal" id="supportChatModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Чат с поддержкой</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body ">
-                <div class="message-container container col-12 mb-2">
-                    <ul class="list-unstyled mb-3 d-flex flex-column col-12">
-                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1">
-                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
-                            <p class="p-1">1 сообщение поддержки</p>                            
-                        </li>
-                        <li class="d-flex justify-content-end align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
-                            <p class="p-1">сообщение пользователя</p>
-                            <img class="supportImg" src="/media/user.jpg"  alt="">
-                            </li>
-                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
-                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
-                            <p class="p-1">2 сообщение поддержки</p>                            
-                        </li>
-                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1">
-                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
-                            <p class="p-1">1 сообщение поддержки</p>                            
-                        </li>
-                        <li class="d-flex justify-content-end align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
-                            <p class="p-1">сообщение пользователя</p>
-                            <img class="supportImg" src="/media/user.jpg"  alt="">
-                            </li>
-                        <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
-                            <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
-                            <p class="p-1">2 сообщение поддержки</p>                            
-                        </li>
-                    </ul>
-                </div>
-                <form>
-                    <div class="input-group position-relative">
-                        <input type="text" class="rounded-pill p-2 col-12" placeholder="Ваше сообщение" aria-label="Ваше сообщение" aria-describedby="basic-addon2">
-                        
-                            <button class="btn btn-primary rounded-pill position-absolute " style="right: 0;top: 0;" type="button">
-                                <img src="/media/iconModel/email-download-svgrepo-com.svg" class="supportImg" alt="">
-                            </button>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Чат с поддержкой</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body ">
+                            <div class="message-container container col-12 mb-2">
+                                <ul class="list-unstyled mb-3 d-flex flex-column col-12">
+                                    <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1">
+                                        <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                                        <p class="p-1">1 сообщение поддержки</p>                            
+                                    </li>
+                                    <li class="d-flex justify-content-end align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                                        <p class="p-1">сообщение пользователя</p>
+                                        <img class="supportImg" src="/media/user.jpg"  alt="">
+                                        </li>
+                                    <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                                        <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                                        <p class="p-1">2 сообщение поддержки</p>                            
+                                    </li>
+                                    <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1">
+                                        <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                                        <p class="p-1">1 сообщение поддержки</p>                            
+                                    </li>
+                                    <li class="d-flex justify-content-end align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                                        <p class="p-1">сообщение пользователя</p>
+                                        <img class="supportImg" src="/media/user.jpg"  alt="">
+                                        </li>
+                                    <li class="d-flex justify-content-start align-items-center  p-2 bg-secondary text-white rounded-pill mb-1 ">
+                                        <img class="supportImg" src="/media/iconModel/Ellipse 14.svg" alt="">
+                                        <p class="p-1">2 сообщение поддержки</p>                            
+                                    </li>
+                                </ul>
+                            </div>
+                            <form>
+                                <div class="input-group position-relative">
+                                    <input type="text" class="rounded-pill p-2 col-12" placeholder="Ваше сообщение" aria-label="Ваше сообщение" aria-describedby="basic-addon2">
+                                    
+                                        <button class="btn btn-primary rounded-pill position-absolute " style="right: 0;top: 0;" type="button">
+                                            <img src="/media/iconModel/email-download-svgrepo-com.svg" class="supportImg" alt="">
+                                        </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
 
         </div>
     </div>

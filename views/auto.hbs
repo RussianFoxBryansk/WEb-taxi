@@ -1,21 +1,26 @@
 
 <main>
     <div class="container car-list mt-3">
-        <div class="row justify-content-center mb-4" role="group" aria-label="Car Categories">
-            <button type="button" class="btn btn-secondary m-1" id="allCarsBtn">Все авто</button>
-            <button type="button" class="btn btn-secondary m-1" id="businessBtn">Бизнес</button>
-            <button type="button" class="btn btn-secondary m-1" id="comfortBtn">Комфорт</button>
-            <button type="button" class="btn btn-secondary m-1" id="luxuryBtn">Люкс</button>
-        </div>
-
+      <div class="row justify-content-center mb-4" role="group" aria-label="Car Categories">
+          <button type="button" class="btn btn-secondary m-1" id="allCarsBtn">Все авто</button>
+          <button type="button" class="btn btn-secondary m-1" id="economyBtn">Эконом</button>
+          <button type="button" class="btn btn-secondary m-1" id="sedanBtn">Седан</button>
+          <button type="button" class="btn btn-secondary m-1" id="SUVBtn">Внедорожник</button>
+          <button type="button" class="btn btn-secondary m-1" id="luxuryBtn">Люкс</button>
+          <button type="button" class="btn btn-secondary m-1" id="hatchbackBtn">Хэтчбек</button>
+      </div>
     
         <div class="overflow-auto-car  scrollable-list form border rounded-top-4 rounded-bottom-4 p-4">
             <div class="row p-4">
 
 {{#each cars}}
-  <div class="col-lg-4 business-car full-car-card">
+  <div class="col-lg-4 {{this.Class}}-car full-car-card">
                     <div class="card car-card col-12 p-0">                        
-                        <img src="{{url}}" alt="{{name}}" class="card-img-top car-image" style="width: 100%;">
+                        {{#if url}}
+                            <img src="{{url}}" alt="{{name}}" class="card-img-top car-image" style="width: 100%;">
+                        {{else}}
+                            <img src="/media/zaglyshka.jpg" alt="автомобиль не отфотографирован" class="card-img-top car-image" style="width: 100%;">
+                        {{/if}}
                         <div class="card-body car-details d-flex justify-content-between">
                             <h5 class="card-title" style="flex: 1;">{{this.Mark}} {{this.Model}}</h5>
                             <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: {{this.PriceDay}}/день</button>
@@ -25,88 +30,7 @@
 {{else}}
   <p>No cars available at the moment.</p>
 {{/each}}
-{{!--                 
-                <div class="col-lg-4 comfort-car full-car-card">
-                    <div class="card car-card col-12 p-0">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 2" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 2</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $60/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 luxury-car full-car-card">
-                    <div class="card car-card col-12 p-0 ">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 3" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 3</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $70/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 business-car full-car-card">
-                    <div class="card car-card col-12 p-0">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 1" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 1</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $50/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 comfort-car full-car-card">
-                    <div class="card car-card col-12 p-0">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 2" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 2</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $60/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 full-car-card">
-                    <div class="card car-card col-12 p-0 luxury-car">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 3" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 3</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $70/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 luxury-car full-car-card">
-                    <div class="card car-card col-12 p-0 ">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 3" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 3</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $70/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 business-car full-car-card">
-                    <div class="card car-card col-12 p-0">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 1" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 1</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $50/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 comfort-car full-car-card">
-                    <div class="card car-card col-12 p-0">
-                        <img src="/media/Rectangle 19.svg" class="card-img-top car-image" alt="Car 2" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 2</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $60/день</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 luxury-car full-car-card">
-                    <div class="card car-card col-12 p-0 ">
-                        <img src="/media/Rectangle 77.svg" class="card-img-top car-image" alt="Car 3" style="width: 100%;">
-                        <div class="card-body car-details d-flex justify-content-between">
-                            <h5 class="card-title" style="flex: 1;">Название авто 3</h5>
-                            <button type="button" class="btn btn-primary" style="flex: 1;">Стоимость: $70/день</button>
-                        </div>
-                    </div>
-                </div> --}}
+
             </div>
         </div>
     </div>

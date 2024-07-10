@@ -5,7 +5,11 @@
         {{#each cars}}
         <div class="col-lg-4 business-car full-car-card">
             <div class="card car-card col-12 p-0">
-                <img src="{{url}}" alt="{{name}}" class="card-img-top car-image" style="width: 100%;">
+                {{#if url}}
+                    <img src="{{url}}" alt="{{name}}" class="card-img-top car-image" style="width: 100%;">
+                {{else}}
+                    <img src="/media/zaglyshka.jpg" alt="автомобиль не отфотографирован" class="card-img-top car-image" style="width: 100%;">
+                {{/if}}
                 <div class="card-body car-details d-flex justify-content-between">
                     <h5 class="card-title" style="flex: 1;">{{this.Mark}} {{this.Model}}</h5>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carModal{{this.id}}" style="flex: 1;">Стоимость: {{this.PriceDay}}/день</button>

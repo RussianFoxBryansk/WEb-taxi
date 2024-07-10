@@ -1,5 +1,14 @@
 
-  
+      <style>
+      
+.map-container,
+      #container{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
   <main class="container mt-4">
     <div class="row">
       <div class="col-md-3 mb-4">
@@ -46,7 +55,7 @@
                 <div class="container from-to-stop">
                     <div class="form-group">
                         <label for="from">Откуда:</label>
-                        <input type="text" class="form-control" id="from" placeholder="Укажите местоположение">
+                        <input type="text" class="form-control" id="from" placeholder="Укажите местоположение"  oninput="showOnMap('from', this.value)">
                     </div>
                     <div class="stops-container">
                         
@@ -54,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="to">Куда:</label>
-                        <input type="text" class="form-control" id="to" placeholder="Укажите куда поедем">
+                        <input type="text" class="form-control" id="to" placeholder="Укажите куда поедем"  oninput="showOnMap('from', this.value)">
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-primary" id="addStop">+ Добавить остановку</button>
@@ -128,8 +137,116 @@
       </div>
       <div class="col-md-6">
         <div class="map-container">
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa58a52543316c669ab592425a91786e00991ad02a267dffb13b2ab6cc5d095b9&amp;source=constructor" width="500" height="400" frameborder="0"></iframe>
-        </div>
+            <div id="container">
+    <script src="https://mapgl.2gis.com/api/js/v1"></script>
+
+        <script src="https://unpkg.com/@2gis/mapgl-directions@^2/dist/directions.js"></script>
+      <script>
+
+
+
+        const map = new mapgl.Map('container', {
+          center: [34.347834, 53.23814], // Replace with the desired coordinates
+          zoom: 7, // Set the initial zoom level
+          key: '928a3853-3108-4379-861a-a4f22ca43580' // Replace with your 2GIS API key
+        });
+const marker = new mapgl.Marker(map, {
+    coordinates: [34.347834, 53.23814],
+});
+const marker1 = new mapgl.Marker(map, {
+    coordinates: [34.364432, 53.243459],
+});
+const marker2 = new mapgl.Marker(map, {
+    coordinates: [34.34227, 53.249356],
+});
+
+
+const directions = new mapgl.Directions(map, {
+                directionsApiKey: '928a3853-3108-4379-861a-a4f22ca43580',
+            });
+            const markers = [];
+let firstPoint;
+            let secondPoint;
+            // A current selecting point
+            let selecting = 'a';
+            const buttonText = ['Choose two points on the map', 'Reset points'];
+
+            const controlsHtml = `<button id="reset" disabled>${buttonText[0]}</button> `;
+            new mapgl.Control(map, controlsHtml, {
+                position: 'topLeft',
+            });
+            const resetButton = document.getElementById('reset');
+
+            resetButton.addEventListener('click', function() {
+                selecting = 'a';
+                firstPoint = undefined;
+                secondPoint = undefined;
+                directions.clear();
+                this.disabled = true;
+                this.textContent = buttonText[0];
+            });
+
+            map.on('click', (e) => {
+                const coords = e.lngLat;
+
+                if (selecting != 'end') {
+                    // Just to visualize selected points, before the route is done
+                    markers.push(
+                        new mapgl.Marker(map, {
+                            coordinates: coords,
+    icon: 'https://docs.2gis.com/img/dotMarker.svg',
+                        }),
+                    );
+                }
+
+    if (selecting === 'a') {
+      firstPoint = coords;
+      document.getElementById('from').value = `Широта: ${coords[1]}, Долгота: ${coords[0]}`; // Set the "Откуда" input field
+      selecting = 'b';
+    } else if (selecting === 'b') {
+      secondPoint = coords;
+      document.getElementById('to').value = `Широта: ${coords[1]}, Долгота: ${coords[0]}`; // Set the "Куда" input field
+      selecting = 'end';
+    }
+
+                // If all points are selected — we can draw the route
+                if (firstPoint && secondPoint) {
+                    directions.carRoute({
+                        points: [firstPoint, secondPoint],
+                    });
+                    markers.forEach((m) => {
+                        m.destroy();
+                    });
+                    resetButton.disabled = false;
+                    resetButton.textContent = buttonText[1];
+                }
+            });
+            
+
+
+
+            function showOnMap(type, address) {
+        if (address.trim() !== '') {
+            const geocodeService = new mapgl.GeocodeService();
+            geocodeService.geocode(address).then(result => {
+                if (result && result.length > 0) {
+                    const coordinates = result[0].feature.geometry.centroid;
+                    if (type === 'from') {
+                        clearMarkersAndAddNewMarker('from', coordinates);
+                    } else if (type === 'to') {
+                        clearMarkersAndAddNewMarker('to', coordinates);
+                    }
+                }
+            });
+        }
+    }
+
+    function clearMarkersAndAddNewMarker(type, coordinates) {
+        map.removeMarkers(); // Удаляем существующие метки
+        map.addMarker({ coordinates: coordinates }); // Добавляем новую метку
+    }
+    </script>
+    </div>
       </div>
     </div>
   </main>
