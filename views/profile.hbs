@@ -19,12 +19,18 @@
                     <img src="media/icon/Rectangle 43.svg" alt="">
                 </p>
                 <input type="file" id="uploadPhoto" style="display: none;"> 
-                  <p class="card-text">Рейтинг пользователя</p>
-                  <p class="card-text">
-                      <span id="ratingStars">
-                          <!-- Отображение звездочек с рейтингом здесь -->
-                      </span>
-                  </p>                          
+                
+                    {{#if isAdmin}}
+                        <h1>Админ</h1>
+                    {{else}}
+                        <p class="card-text">Рейтинг пользователя</p>
+                        <p class="card-text">
+                            <span id="ratingStars">
+                                <!-- Отображение звездочек с рейтингом здесь -->
+                            </span>
+                        </p> 
+                    {{/if}}
+                                           
               </div>
           </div>
       </div>
@@ -65,8 +71,19 @@
                 </div>
             </form>
 
-
-            <div class="row mt-4 card p-4">
+            {{#if isAdmin}}
+            <div class="d-flex justify-content-center align-items-center col-12">
+            <h1 class="col-4">Команда:</h1>
+                <h3 class="d-flex flex-column col-8">
+                    <a href="https://vk.com/skyfall01">наставник</a>
+                    <a href="https://vk.com/tupabodya">дизайн</a>
+                    <a href="https://vk.com/dwermast126">бэк</a>
+                    <a href="https://vk.com/id292252866">фронт/бэк</a>
+                    
+                </h3>
+            </div>
+            {{else}}
+                <div class="row mt-4 card p-4">
                 <div class="col-md-12">
                     <h2 class="row justify-content-center ">История поездок</h2>
                     <div class="scrollable-list card form">
@@ -127,6 +144,8 @@
                     </div>
                 </div>
             </div>
+            {{/if}}
+            
         </div>
     </div>
 </div>

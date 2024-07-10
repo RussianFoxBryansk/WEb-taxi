@@ -22,7 +22,7 @@
     return starHTML;
   }
   
-  let userRating = 0; // Пример рейтинга (можно заменить на свой)
+  let userRating = user.Rating; // Пример рейтинга (можно заменить на свой)
   document.getElementById('ratingStars').innerHTML = generateStars(userRating);
 
   // JavaScript для смены фото профиля

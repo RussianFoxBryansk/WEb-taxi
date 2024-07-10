@@ -39,7 +39,8 @@ const user = {
   Nickname: '',
   Password: '',
   username: '',
-  password: ''
+  password: '',
+  AdminID:''
 };
 function getUsers(callback) {
   connection.query('SELECT *,Nickname as username,Password as password  FROM User', (error, results) => {
@@ -92,6 +93,31 @@ getUsers((error, results) => {
       console.log(cars); // Обработайте извлеченные данные здесь
     });
 
+
+// Обработка запроса на обновление данных в базе
+app.post('/profile', (req, res) => {
+  const {userId, phoneNumber, email } = req.body;
+
+  console.log('Received phoneNumber:', phoneNumber);
+  console.log('Received email:', email);
+  console.log('UserID:', userId);
+
+  // Убедитесь, что userId содержит корректное значение (например, выведите тип данных)
+  console.log('UserID type:', typeof userId);
+  const sql = 'UPDATE user SET Email = ?, PhoneNumber = ? WHERE UserID = ?';
+  connection.query(sql, [email, phoneNumber,userId], (error, results, fields) => {
+      if (error) {
+          console.error(error);
+          res.status(500).send('Произошла ошибка при обновлении данных в базе данных');
+      } else {
+          if (results.affectedRows > 0) {
+            console.log('Данные успешно обновлены в базе данных');
+          } else {
+            console.log('Не найден пользователь с указанным ID');
+          }
+      }
+  });
+});
 //главная страница
 app.get('/', function(req, res) {
     res.render('index', { username: req.session.username,
@@ -106,7 +132,7 @@ app.get('/', function(req, res) {
 
 // Обработка регистрации и входа в систему
 app.post('/reg', (req, res) => {
-    const { action, username, password } = req.body;
+  const { action, username, password, fullName, login, email } = req.body;
 
     if (!action || !username || !password) {
         if (!action) {
@@ -128,15 +154,27 @@ app.post('/reg', (req, res) => {
     console.log(`Получен запрос на регистрацию/вход для пользователя: ${username}, действие: ${action}`);
 
     if (action === 'register') {
-        // Регистрация нового пользователя
-        if (users.some(user => user.username === username)) {
-            console.log(`Пользователь с именем ${username} уже существует`);
-            res.render('reg', { message: 'Пользователь с таким именем уже существует', navbar: globalNavbar, footer: globalFooter });
-        } else {
-            users.push({ username, password });
-            console.log(`Пользователь ${username} успешно зарегистрирован`);
-            res.redirect('/profile');
-        }
+      // Определение значения UserID
+      connection.query('SELECT IFNULL(MAX(UserID), 0) + 1 AS newUserID FROM user', (error, results) => {
+          if (error) {
+              console.error('Ошибка определения нового UserID:', error);
+              res.status(500).send('Ошибка регистрации пользователя');
+          } else {
+              const newUserID = results[0].newUserID;
+  
+              // Затем вставляем нового пользователя с определенным значением 'UserID'
+              connection.query('INSERT INTO user (UserID, Nickname, Password, FIO, PhoneNumber, Email) VALUES (?, ?, ?, ?, ?, ?)',
+                  [newUserID, username, password, fullName, login, email], (error, results) => {
+                      if (error) {
+                          console.error('Ошибка регистрации пользователя:', error);
+                          res.status(500).send('Ошибка регистрации пользователя');
+                      } else {
+                          console.log(`Пользователь ${username} успешно зарегистрирован`);
+                          res.redirect('/profile');
+                      }
+                  });
+          }
+      });
     } else if (action === 'login') {
         // Вход в систему
         
@@ -152,6 +190,9 @@ app.post('/reg', (req, res) => {
             user.PhoneNumber = loggedInUser.PhoneNumber;
             user.Email = loggedInUser.Email;
             user.Nickname = loggedInUser.Nickname;
+            user.Rating=loggedInUser.Rating
+            user.PromoCodeID= loggedInUser.PromoCodeID
+            user.AdminID= loggedInUser.AdminID
             res.redirect('/profile');
         } else {
             console.log(`Неправильное имя пользователя или пароль для пользователя ${username}`);
@@ -170,7 +211,8 @@ app.get('/profile', (req, res) => {
                                 navbar: 'navbar',
                                 footer: 'footer',
                                 authenticated: req.session.authenticated || false,
-                                user
+                                user,
+                                isAdmin: user.AdminID 
         });
     } else {
         res.redirect('/reg');
@@ -220,6 +262,7 @@ app.get('/auto', function(req, res) {
       user,
       cars,
       car,
+      isAdmin: user.AdminID 
     });
   });
 
@@ -230,6 +273,7 @@ app.get('/auto', function(req, res) {
       footer: 'footer',
       authenticated: req.session.authenticated || false,
       user,
+      isAdmin: user.AdminID 
     });
   });
 
