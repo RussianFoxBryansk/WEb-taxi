@@ -276,6 +276,16 @@ app.get('/auto', function(req, res) {
       isAdmin: user.AdminID 
     });
   });
+  app.get('/rental-history', function(req, res) {
+    res.render('rental-history', { 
+      username: req.session.username,
+      navbar: 'navbar',
+      footer: 'footer',
+      authenticated: req.session.authenticated || false,
+      user,
+      isAdmin: user.AdminID 
+    });
+  });
 
 // 
 app.listen(port, function () {
