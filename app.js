@@ -286,7 +286,16 @@ app.get('/auto', function(req, res) {
       isAdmin: user.AdminID 
     });
   });
-
+  app.get('/trip-history', function(req, res) {
+    res.render('trip-history', { 
+      username: req.session.username,
+      navbar: 'navbar',
+      footer: 'footer',
+      authenticated: req.session.authenticated || false,
+      user,
+      isAdmin: user.AdminID 
+    });
+  });
 // 
 app.listen(port, function () {
 console.log( `Сервер запущен:
